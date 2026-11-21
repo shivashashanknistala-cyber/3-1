@@ -1,0 +1,169 @@
+first on docker 
+---------------
+note: don't write what's inside ()....
+
+1.DOCKER---SINGLE-CONTAINER
+
+
+-->docker pull redis
+-->docker run --name my-redis -d redis
+-->docker exec -it my-redis redis-cli
+-->SET name "babai"
+-->GET name (ouput is babai)
+output:-open docker we can see my-redis
+
+
+2.DOCKER--MULTI-CONTAINER
+
+
+open browser and type docker hub and open
+search the frontend(workspace/anything given)
+next open compose then view compose
+copy the code...
+next create a folder name it anything
+crate a file inside it
+name:- docker-compose.yaml
+now paste the code inside this file
+changes to be done in code:-
+ports:-8090:80
+environment:-WORDPRESS_DB_HOST=db:3306
+now in terminal:-
+-->docker-compose up -d
+next open browser and type:- localhost:8090
+(show that output) completed....
+next in the same terminal type
+-->docker-compose stop
+
+3.KUBERNETS
+
+-->minikube start -driver=docker
+-->minikube status
+-->kubectl create deployment mynginx --image=ngnix
+(if any error here then change mynginx to other name like your wish anything)
+-->kubectl expose deployment mynginx --type=NodePort --port=80 --target-port=80
+-->kubectl get deployments
+-->kubectl get pods
+-->kubectl scale deployment mynginx --replicas=5
+-->kubectl port -forward svc/mynginx 8899:80
+next open brwoser and type:- localhost:8899 
+next in the same cmd:-
+-->kubectl delete deployment mynginx
+
+
+4.NAGIOS
+
+-->docker pull jasonrivers/nagios:latest
+-->docker run --name nagiosdemo -p 8889:80 -d jasonrivers/nagios:latest
+next open brwoser and type:- localhost:8889
+in browser it shows:-
+username:
+password:
+in username type:-nagiosadmin
+in password type:-nagios
+next in the same cmd:-
+-->docker stop nagiosdemo
+
+
+5.AWS
+
+modules
+if not (start lab)
+search Ec2
+launch instance
+name
+ubuntu
+create new pair
+launch instance
+connect to instrance
+connect
+commands:
+-->sudo apt update
+-->sudo apt upgrade -y
+-->sudo apt install openjdk-17-jdk -y
+-->sudo apt install maven -y
+-->sudo apt install git -y
+-->sudo apt install tomcat10 -y
+-->sudo systemctl enable tomcat10
+-->sudo systemctl status tomcat10
+-->git clone {url}
+(change directory to web application)
+-->mvn clean package
+build success
+ls target/ -> results {webapp_name.war}
+
+
+6.JENKINS
+
+same for both java and web
+localhost:{port}
+
+
+for build 
+new item
+freestyle
+ok
+
+git?-->{given repo}
+Branch specifier-->main or master according to repo
+Add Build step-->Invoke top-level
+maven version-->maven Home
+goals-->clean
+Add Build step-->Invoke top-level
+maven version-->maven Home
+goals-->install
+Add post build actions-->Archive the artifacts
+**/*
+Add post build actions-->build other projects
+{filename for test ex:javatest}
+
+
+
+for test
+new item
+freestyle
+ok
+
+Build enviornment-->delete Workspace\
+Add Build step-->copy artifacts
+project name :{filename ex:javabuild}
+stable build {keep tick}
+**/*
+Add Build step-->Invoke top-level
+maven version-->maven Home
+goals-->test
+Add post build actions-->Archive the artifacts
+**/*
+
+
+
+script 
+
+give name 
+select pipeline instead of freestyle
+
+according to given question paste code 
+
+
+
+
+for running any  project
+create pipeline:
+ give name 
+new view-->Build pipeline view 
+select initial job-->{project_name Ex:javabuild}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
